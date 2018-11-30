@@ -1,0 +1,12 @@
+---
+- name: "Update OS"
+  package:
+    name: '*'
+    state: latest
+
+- name: "Pause - 2min"
+  pause:
+    minutes: 2
+
+- name: "DONE - System reboot"
+  shell: reboot

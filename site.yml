@@ -1,0 +1,42 @@
+---
+- hosts: localhost
+  roles:
+    - { role: fedora, become: true, when: ansible_distribution == 'Fedora' }
+    - { role: ubuntu, become: true, when: ansible_distribution == 'Debian' }
+    - { role: install, become: true }
+    - { role: configs, become: false }
+    - { role: fin, become: true }
+
+  vars:
+    pkgs:
+      - vim
+      - terminator
+      - tilda
+      - screen
+      - ansible
+      - mc
+      - ncdu
+      - net-tools
+      - nmap
+      - telnet
+      - wget
+      - curl
+      - git
+      - htop
+      - tree
+      - pluma
+      - python3-pyOpenSSL
+      - libselinux-python
+      - snapd
+      - yamllint
+      - virtualenv
+    pipa:
+      - awscli
+      - aws-shell
+    snap:
+      - pycharm-community
+      - slack
+      - spotify
+      - remmina
+      - atom
+      - vscode

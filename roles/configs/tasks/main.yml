@@ -1,0 +1,42 @@
+---
+- name: "Create Dir Tree in ~/Documents/"
+  file:
+    path: "{{ ansible_user_dir }}/Documents/{{ item }}"
+    state: directory
+  loop:
+    - projects
+    - projects/_archive
+    - wiki
+    - bash
+    - aws
+    - azure
+    - gcp
+    - ansible
+
+- name: "Set Vimrc"
+  template:
+    src: vimrc.j2
+    dest: "{{ ansible_user_dir }}/.vimrc"
+
+- name: "Create ~/.ssh"
+  file:
+    path: "{{ ansible_user_dir }}/.ssh/"
+    state: directory
+
+- name: "Generate OpenSSL private key"
+  openssl_privatekey:
+    state: present
+    path: "{{ ansible_user_dir }}/.ssh/id_rsa"
+
+- name: "Generate OpenSSL public key"
+  openssl_publickey:
+    state: present
+    path: "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
+    privatekey_path: "{{ ansible_user_dir }}/.ssh/id_rsa"
+    format: OpenSSH
+
+- name: "Set config in ~/.ssh"
+  template:
+    src: ssh-config.j2
+    dest: "{{ ansible_user_dir }}/.ssh/config"
+    mode: 0600

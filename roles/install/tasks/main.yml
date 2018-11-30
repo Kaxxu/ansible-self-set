@@ -1,0 +1,60 @@
+---
+- name: "Set snapd"
+  systemd:
+    name: snapd
+    state: started
+    enabled: true
+
+- name: "Install pip"
+  easy_install:
+    name: pip
+    state: latest
+  ignore_errors: true
+
+- name: "Install from pip"
+  pip:
+    name: "{{ pipa }}"
+    state: latest
+
+# req. Ansible 2.8
+#- name: "Install from snapd"
+#  snap:
+#    name: "{{ snap }}"
+#    classic: true
+
+- name: "Install from snapd BASH - Use snap module in Ansible 2.8 // uncomment"
+  shell: snap install {{ item }} --classic
+  with_items:
+    - "{{ snap }}"
+
+- name: "Get Terraform version from github"
+  uri:
+    url: https://api.github.com/repos/hashicorp/terraform/releases/latest
+    body_format: json
+  register: terra
+  tags: terraform
+
+#- name: "Set Terraform Version"
+#  debug:
+#    msg: "{{ terra.json.tag_name | replace ('v', '') }}"
+#  tags: terraform
+
+- name: "Set Terraform Version"
+  set_fact:
+    terraver: "{{ terra.json.tag_name | replace ('v', '') }}"
+  tags: terraform
+
+- name: "Download Terraform"
+  get_url:
+    url: "https://releases.hashicorp.com/terraform/{{ terraver }}/terraform_{{ terraver }}_linux_amd64.zip"
+    dest: /tmp/terraform-{{ terraver }}.zip
+    mode: 0777
+  tags: terraform
+
+- name: "Install Terraform"
+  unarchive:
+    src: /tmp/terraform-{{ terraver }}.zip
+    dest: /usr/bin/
+    mode: +x
+    remote_src: true
+  tags: terraform

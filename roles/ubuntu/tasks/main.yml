@@ -1,0 +1,12 @@
+---
+- name: "Install Ubuntu pkg"
+  apt:
+    name: "{{ pkgs }}"
+    update_cache: true
+    state: latest
+
+- name: "Install Ubuntu specified pkg"
+  apt:
+    name: build-essential
+    update_cache: true
+    state: latest
