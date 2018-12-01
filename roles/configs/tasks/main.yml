@@ -1,4 +1,14 @@
 ---
+- name: "Set User Alias"
+  lineinfile:
+    path: "{% if ansible_distribution == 'Fedora' %}/etc/bashrc{% elif ansible_distribution == 'Ubuntu' %}/etc/bash.bashrc{% endif %}"
+    line: "{{ item }}"
+  loop:
+    - "alias ll='ls -alh'"
+    - "alias fuckit='shutdown -h now'"
+    - "alias fixit='reboot'"
+    - "alias krakow='curl wttr.in/krakow'"
+
 - name: "Create Dir Tree in ~/Documents/"
   file:
     path: "{{ ansible_user_dir }}/Documents/{{ item }}"
@@ -40,3 +50,34 @@
     src: ssh-config.j2
     dest: "{{ ansible_user_dir }}/.ssh/config"
     mode: 0600
+
+- name: "Create Terminator Config tree"
+  file:
+    path: "{{ ansible_user_dir }}/.config/terminator"
+    state: directory
+
+- name: "Set Terminator Config"
+  template:
+    src: terminator-config.j2
+    dest: "{{ ansible_user_dir }}/.config/terminator/config"
+    mode: 0664
+
+- name: "Create Tilda Config tree"
+  file:
+    path: "{{ ansible_user_dir }}/.config/{{ item }}"
+    state: directory
+  loop:
+    - tilda
+    - autostart
+
+- name: "Set Tilda Config"
+  template:
+    src: tilda-config.j2
+    dest: "{{ ansible_user_dir }}/.config/tilda/config_0"
+    mode: 0664
+
+- name: "Set Tilda to Autostart"
+  template:
+    src: tilda-autostart.j2
+    dest: "{{ ansible_user_dir }}/.config/autostart/tilda.desktop"
+    mode: 0664

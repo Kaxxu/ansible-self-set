@@ -1,12 +1,21 @@
 ---
-- name: "Update OS"
-  package:
+- name: "Update Ubuntu"
+  apt:
     name: '*'
     state: latest
+    update_cache: true
+    force_apt_get: true
+  when: ansible_distribution == 'Ubuntu'
+
+- name: "Update Fedora"
+  dnf:
+    name: '*'
+    state: latest
+  when: ansible_distribution == 'Fedora'
 
 - name: "Pause - 2min"
   pause:
     minutes: 2
 
 - name: "DONE - System reboot"
-  shell: reboot
+  command: reboot

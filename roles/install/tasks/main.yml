@@ -5,12 +5,6 @@
     state: started
     enabled: true
 
-- name: "Install pip"
-  easy_install:
-    name: pip
-    state: latest
-  ignore_errors: true
-
 - name: "Install from pip"
   pip:
     name: "{{ pipa }}"

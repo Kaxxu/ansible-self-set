@@ -2,7 +2,7 @@
 - hosts: localhost
   roles:
     - { role: fedora, become: true, when: ansible_distribution == 'Fedora' }
-    - { role: ubuntu, become: true, when: ansible_distribution == 'Debian' }
+    - { role: ubuntu, become: true, when: ansible_distribution == 'Ubuntu' }
     - { role: install, become: true }
     - { role: configs, become: false }
     - { role: fin, become: true }
@@ -22,11 +22,10 @@
       - wget
       - curl
       - git
+      - python-pip
       - htop
       - tree
       - pluma
-      - python3-pyOpenSSL
-      - libselinux-python
       - snapd
       - yamllint
       - virtualenv

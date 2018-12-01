@@ -6,8 +6,12 @@
 
 - name: "Install Fedora specified pkg"
   dnf:
-    name: '@Development Tools'
+    name: "{{ item }}"
     state: latest
+  loop:
+    - '@Development Tools'
+    - python3-pyOpenSSL
+    - libselinux-python
 
 - name: "Setting Snapd Link"
   file:
