@@ -13,7 +13,6 @@
       - terminator
       - tilda
       - screen
-      - ansible
       - mc
       - ncdu
       - net-tools

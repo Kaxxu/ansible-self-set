@@ -14,7 +14,6 @@
     path: "{{ ansible_user_dir }}/Documents/{{ item }}"
     state: directory
   loop:
-    - projects
     - projects/_archive
     - wiki
     - bash
@@ -23,7 +22,7 @@
     - gcp
     - ansible
 
-- name: "Set Vimrc"
+- name: "Set .vimrc"
   template:
     src: vimrc.j2
     dest: "{{ ansible_user_dir }}/.vimrc"
@@ -51,24 +50,20 @@
     dest: "{{ ansible_user_dir }}/.ssh/config"
     mode: 0600
 
-- name: "Create Terminator Config tree"
-  file:
-    path: "{{ ansible_user_dir }}/.config/terminator"
-    state: directory
-
-- name: "Set Terminator Config"
-  template:
-    src: terminator-config.j2
-    dest: "{{ ansible_user_dir }}/.config/terminator/config"
-    mode: 0664
-
-- name: "Create Tilda Config tree"
+- name: "Create config tree in ~/.config"
   file:
     path: "{{ ansible_user_dir }}/.config/{{ item }}"
     state: directory
   loop:
     - tilda
     - autostart
+    - terminator
+
+- name: "Set Terminator Config"
+  template:
+    src: terminator-config.j2
+    dest: "{{ ansible_user_dir }}/.config/terminator/config"
+    mode: 0664
 
 - name: "Set Tilda Config"
   template:

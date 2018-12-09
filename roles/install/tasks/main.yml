@@ -28,10 +28,10 @@
   register: terra
   tags: terraform
 
-#- name: "Set Terraform Version"
-#  debug:
-#    msg: "{{ terra.json.tag_name | replace ('v', '') }}"
-#  tags: terraform
+- name: "Terraform Version"
+  debug:
+    msg: "{{ terra.json.tag_name | replace ('v', '') }}"
+  tags: terraform
 
 - name: "Set Terraform Version"
   set_fact:
