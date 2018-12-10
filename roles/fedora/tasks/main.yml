@@ -12,6 +12,7 @@
     - '@Development Tools'
     - python3-pyOpenSSL
     - libselinux-python
+    - snapd
 
 - name: "Setting Snapd Link"
   file:
