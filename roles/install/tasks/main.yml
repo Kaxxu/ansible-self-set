@@ -5,6 +5,12 @@
     state: started
     enabled: true
 
+- name: "Set Docker"
+  systemd:
+    name: docker
+    state: started
+    enabled: true
+
 - name: "Install from pip"
   pip:
     name: "{{ pipa }}"
