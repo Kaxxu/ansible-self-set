@@ -27,6 +27,8 @@
       - pluma
       - yamllint
       - virtualenv
+      - zip
+      - unzip
     pipa:
       - awscli
       - aws-shell

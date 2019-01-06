@@ -5,6 +5,11 @@
     update_cache: true
     state: latest
 
+- name: "Add Docker GPG Key"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
 - name: "Install Ubuntu specified pkg"
   apt:
     name: "{{ item }}"
@@ -12,3 +17,7 @@
     update_cache: true
   loop:
     - build-essential
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - docker-ce
