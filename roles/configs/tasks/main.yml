@@ -3,6 +3,7 @@
   lineinfile:
     path: "{% if ansible_distribution == 'Fedora' %}/etc/bashrc{% elif ansible_distribution == 'Ubuntu' %}/etc/bash.bashrc{% endif %}"
     line: "{{ item }}"
+  become: true
   loop:
     - "alias ll='ls -alh'"
     - "alias fuckit='shutdown -h now'"
