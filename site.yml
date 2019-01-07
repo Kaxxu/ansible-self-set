@@ -29,9 +29,11 @@
       - virtualenv
       - zip
       - unzip
+      - siege
     pipa:
       - awscli
       - aws-shell
+      - awsscout2
     snap:
       - pycharm-community
       - slack

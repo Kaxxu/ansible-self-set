@@ -12,6 +12,7 @@
     update_cache: true
   loop:
     - build-essential
+    - software-properties-common
 
 - name: "Add Docker GPG Key"
   apt_key:
@@ -26,5 +27,15 @@
 - name: "Install Docker-ce"
   apt:
     name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: "Add Ansible Repo"
+  apt_repository:
+    repo: ppa:ansible/ansible
+
+- name: "Install Ansible"
+  apt:
+    name: ansible
     state: latest
     update_cache: true
