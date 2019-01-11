@@ -13,7 +13,7 @@ The `-K` option will ask for the sudo password to use by Ansible.
 In the playbook is used tag named "terraform" - It will only install terraform on the workstation. 
 ```
 ansible-playbook site.yml -K --tags terraform
-
+```
 ### File Structure
 
 ```
