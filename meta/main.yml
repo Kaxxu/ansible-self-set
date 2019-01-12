@@ -1,6 +1,6 @@
 galaxy_info:
   author: Paweł 'Kaxxu' Mentel
-  description: Ansible playbook to configure Linux Fedora and Ubuntu workstation using the `hosts: localhost`.
+  description: Ansible playbook to configure Linux Fedora and Ubuntu workstation using the "hosts: localhost".
 
   license: MIT License
 
