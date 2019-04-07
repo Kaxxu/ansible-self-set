@@ -31,3 +31,4 @@
     src: /var/lib/snapd/snap
     dest: /snap
     state: link
+

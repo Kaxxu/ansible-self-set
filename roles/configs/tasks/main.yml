@@ -77,3 +77,4 @@
     src: tilda-autostart.j2
     dest: "{{ ansible_user_dir }}/.config/autostart/tilda.desktop"
     mode: 0664
+
