@@ -25,6 +25,7 @@
       - htop
       - tree
       - pluma
+      - pwgen
       - yamllint
       - virtualenv
       - zip
@@ -41,4 +42,5 @@
       - remmina
       - atom
       - vscode
+      - fast
 

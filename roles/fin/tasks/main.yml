@@ -13,10 +13,9 @@
     state: latest
   when: ansible_distribution == 'Fedora'
 
-- name: "Pause - 2min"
+- name: "Pause - reboot in ~2min"
   pause:
     minutes: 2
 
 - name: "DONE - System reboot"
   command: reboot
-
