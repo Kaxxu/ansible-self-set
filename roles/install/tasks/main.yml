@@ -16,16 +16,15 @@
     name: "{{ pipa }}"
     state: latest
 
-# req. Ansible 2.8
-#- name: "Install from snapd"
-#  snap:
-#    name: "{{ snap }}"
-#    classic: true
+- name: "Install from snapd"
+  snap:
+    name: "{{ snap }}"
+    classic: true
 
-- name: "Install from snapd BASH - Use snap module in Ansible 2.8 // uncomment"
-  shell: snap install {{ item }} --classic
-  with_items:
-    - "{{ snap }}"
+#- name: "Install from snapd BASH - in case"
+#  shell: snap install {{ item }} --classic
+#  with_items:
+#    - "{{ snap }}"
 
 - name: "Get Terraform version from github"
   uri:

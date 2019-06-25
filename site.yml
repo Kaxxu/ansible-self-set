@@ -20,6 +20,7 @@
       - telnet
       - wget
       - curl
+      - jq
       - git
       - python-pip
       - htop
@@ -31,6 +32,14 @@
       - zip
       - unzip
       - siege
+      - i3
+      - i3status
+      - dmenu
+      - i3lock
+      - xbacklight
+      - feh
+      - conky
+      - conky-manager
     pipa:
       - awscli
       - aws-shell
@@ -43,4 +52,9 @@
       - atom
       - vscode
       - fast
-
+    walls:
+      - https://w.wallhaven.cc/full/3k/wallhaven-3kxgm9.png
+      - https://w.wallhaven.cc/full/2k/wallhaven-2kyyw9.jpg
+      - https://w.wallhaven.cc/full/j5/wallhaven-j5x92m.jpg
+      - https://w.wallhaven.cc/full/1j/wallhaven-1j9o9v.png
+      - https://w.wallhaven.cc/full/4y/wallhaven-4yd8x4.jpg

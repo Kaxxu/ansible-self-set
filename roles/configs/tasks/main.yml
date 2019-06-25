@@ -17,16 +17,21 @@
   loop:
     - projects/_archive
     - wiki
-    - bash
-    - aws
-    - azure
-    - gcp
-    - ansible
+    - git
+    - scripts
+    - cloud/aws
+    - cloud/azure
+    - cloud/gcp
 
 - name: "Set .vimrc"
   template:
     src: vimrc.j2
     dest: "{{ ansible_user_dir }}/.vimrc"
+
+- name: "Set i3 config"
+  template:
+    src: i3-config.j2
+    dest: "{{ ansible_user_dir }}/.config/i3/config"
 
 - name: "Create ~/.ssh"
   file:
@@ -78,3 +83,9 @@
     dest: "{{ ansible_user_dir }}/.config/autostart/tilda.desktop"
     mode: 0664
 
+- name: "Download Wallpapers :)"
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/Pictures"
+  with_items:
+    - "{{ walls }}"

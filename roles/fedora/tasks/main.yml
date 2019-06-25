@@ -16,15 +16,18 @@
     - dnf-plugins-core
 
 - name: "Get Docker Repo"
-  template:
-    src: docker-ce.j2
-    dest: /etc/yum.repos.d/docker-ce.repo
-    mode: 0644
-
-- name: "Install Docker-ce"
   dnf:
-    name: docker-ce
+    enablerepo: https://download.docker.com/linux/fedora/docker-ce.repo
+
+- name: "Install Docker"
+  dnf:
+    name: "{{ item }}"
     state: latest
+    update_cache: true
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
 
 - name: "Setting Snapd Link"
   file:
@@ -32,3 +35,9 @@
     dest: /snap
     state: link
 
+- name: "Install i3"
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  tags: [ never, i3 ]
+  loop:
