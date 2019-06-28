@@ -15,15 +15,16 @@
     - snapd
     - dnf-plugins-core
 
-- name: "Get Docker Repo"
-  dnf:
-    enablerepo: https://download.docker.com/linux/fedora/docker-ce.repo
+#- name: "Get Docker repo"
+#  command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
+#  ignore_errors: true
 
 - name: "Install Docker"
   dnf:
     name: "{{ item }}"
     state: latest
     update_cache: true
+  ignore_errors: true
   loop:
     - docker-ce
     - docker-ce-cli

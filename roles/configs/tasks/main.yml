@@ -28,11 +28,6 @@
     src: vimrc.j2
     dest: "{{ ansible_user_dir }}/.vimrc"
 
-- name: "Set i3 config"
-  template:
-    src: i3-config.j2
-    dest: "{{ ansible_user_dir }}/.config/i3/config"
-
 - name: "Create ~/.ssh"
   file:
     path: "{{ ansible_user_dir }}/.ssh/"
@@ -64,6 +59,7 @@
     - tilda
     - autostart
     - terminator
+    - i3
 
 - name: "Set Terminator Config"
   template:
@@ -82,6 +78,11 @@
     src: tilda-autostart.j2
     dest: "{{ ansible_user_dir }}/.config/autostart/tilda.desktop"
     mode: 0664
+
+- name: "Set i3 config"
+  template:
+    src: i3-config.j2
+    dest: "{{ ansible_user_dir }}/.config/i3/config"
 
 - name: "Download Wallpapers :)"
   get_url:
