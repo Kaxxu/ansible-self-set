@@ -15,9 +15,9 @@
     - snapd
     - dnf-plugins-core
 
-#- name: "Get Docker repo"
-#  command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
-#  ignore_errors: true
+- name: "Get Docker repo"
+  command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
+  ignore_errors: true
 
 - name: "Install Docker"
   dnf:
@@ -35,10 +35,3 @@
     src: /var/lib/snapd/snap
     dest: /snap
     state: link
-
-- name: "Install i3"
-  dnf:
-    name: "{{ item }}"
-    state: latest
-  tags: [ never, i3 ]
-  loop:
