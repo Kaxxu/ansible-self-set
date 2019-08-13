@@ -39,4 +39,3 @@
     name: ansible
     state: latest
     update_cache: true
-

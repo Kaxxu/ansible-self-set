@@ -22,40 +22,37 @@
     name: "{{ snap }}"
     classic: true
 
-#- name: "Install from snapd BASH - in case"
+#- name: "Install from snapd BASH - in case working on lower ansible than 2.8"
 #  shell: snap install {{ item }} --classic
 #  with_items:
 #    - "{{ snap }}"
 
-- name: "Get Terraform version from github"
-  uri:
-    url: https://api.github.com/repos/hashicorp/terraform/releases/latest
-    body_format: json
-  register: terra
-  tags: terraform
+- Name: "Terraform Install"
+  block:
+  - name: "Get Terraform version from github"
+    uri:
+      url: https://api.github.com/repos/hashicorp/terraform/releases/latest
+      body_format: json
+    register: terra
 
-- name: "Terraform Version"
-  debug:
-    msg: "{{ terra.json.tag_name | replace ('v', '') }}"
-  tags: terraform
+  - name: "Terraform Version"
+    debug:
+      msg: "{{ terra.json.tag_name | replace ('v', '') }}"
 
-- name: "Set Terraform Version"
-  set_fact:
-    terraver: "{{ terra.json.tag_name | replace ('v', '') }}"
-  tags: terraform
+  - name: "Set Terraform Version"
+    set_fact:
+      terraver: "{{ terra.json.tag_name | replace ('v', '') }}"
 
-- name: "Download Terraform"
-  get_url:
-    url: "https://releases.hashicorp.com/terraform/{{ terraver }}/terraform_{{ terraver }}_linux_amd64.zip"
-    dest: /tmp/terraform-{{ terraver }}.zip
-    mode: 0777
-  tags: terraform
+  - name: "Download Terraform"
+    get_url:
+      url: "https://releases.hashicorp.com/terraform/{{ terraver }}/terraform_{{ terraver }}_linux_amd64.zip"
+      dest: /tmp/terraform-{{ terraver }}.zip
+      mode: 0777
 
-- name: "Install Terraform"
-  unarchive:
-    src: /tmp/terraform-{{ terraver }}.zip
-    dest: /usr/bin/
-    mode: +x
-    remote_src: true
+  - name: "Install Terraform"
+    unarchive:
+      src: /tmp/terraform-{{ terraver }}.zip
+      dest: /usr/bin/
+      mode: +x
+      remote_src: true
   tags: terraform
-
