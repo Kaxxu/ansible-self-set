@@ -16,5 +16,5 @@ ansible-playbook site.yml -K --tags terraform
 ```
 
 ### Terraform role
-[Mine Terraform role github location](https://github.com/Kaxxu/terraform-ansible)
+[Mine Ansible-Terraform role github location](https://github.com/Kaxxu/ansible-terraform-install)
 
