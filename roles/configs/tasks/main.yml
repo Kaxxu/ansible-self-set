@@ -5,23 +5,14 @@
     line: "{{ item }}"
   become: true
   loop:
-    - "alias ll='ls -alh'"
-    - "alias fuckit='shutdown -h now'"
-    - "alias fixit='reboot'"
-    - "alias krakow='curl wttr.in/krakow'"
+    - "{{ alias }}"
 
 - name: "Create Dir Tree in ~/Documents/"
   file:
     path: "{{ ansible_user_dir }}/Documents/{{ item }}"
     state: directory
   loop:
-    - projects/_archive
-    - wiki
-    - git
-    - scripts
-    - cloud/aws
-    - cloud/azure
-    - cloud/gcp
+    - "{{ dirs }}"
 
 - name: "Set .vimrc"
   template:
@@ -84,7 +75,7 @@
     src: i3-config.j2
     dest: "{{ ansible_user_dir }}/.config/i3/config"
 
-- name: "Download Wallpapers :)"
+- name: "Download Wallpapers"
   get_url:
     url: "{{ item }}"
     dest: "{{ ansible_user_dir }}/Pictures"

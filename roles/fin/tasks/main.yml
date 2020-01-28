@@ -17,5 +17,5 @@
   pause:
     minutes: 2
 
-- name: "DONE - System reboot"
+- name: "( ﾟдﾟ)つ Bye"
   command: reboot

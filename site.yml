@@ -7,8 +7,9 @@
     - { role: configs, become: false }
     - { role: fin, become: true }
 
+
   vars:
-    pkgs:
+    pkgs:     # get and install pkg from os pkg manager
       - vim
       - terminator
       - tilda
@@ -40,12 +41,12 @@
       - feh
       - conky
       - conky-manager
-    pipa:
+    pipa:     # install pkg for pip
       - awscli
       - aws-shell
       - awsscout2
       - ovhcli
-    snap:
+    snap:     # Download and install snapd pkg
       - pycharm-community
       - slack
       - spotify
@@ -53,9 +54,25 @@
       - atom
       - vscode
       - fast
-    walls:
+    walls:    # Download Wallpapers
       - https://w.wallhaven.cc/full/3k/wallhaven-3kxgm9.png
       - https://w.wallhaven.cc/full/2k/wallhaven-2kyyw9.jpg
       - https://w.wallhaven.cc/full/j5/wallhaven-j5x92m.jpg
       - https://w.wallhaven.cc/full/1j/wallhaven-1j9o9v.png
       - https://w.wallhaven.cc/full/4y/wallhaven-4yd8x4.jpg
+    alias:    # OS own aliases set in '/etc/bashrc' or '/etc/bash.bashrc' depend on base OS
+      - "alias ll='ls -alh'"
+      - "alias fuckit='shutdown -h now'"
+      - "alias fixit='reboot'"
+      - "alias krakow='curl wttr.in/krakow'"
+    dirs:     # Directory structure in ~/Documents/
+      - projects/_archive
+      - wiki
+      - git
+      - scripts
+      - cloud/aws
+      - cloud/azure
+      - cloud/gcp
+      - cloud/ovh
+      - cloud/alibaba
+      - cloud/oracle
